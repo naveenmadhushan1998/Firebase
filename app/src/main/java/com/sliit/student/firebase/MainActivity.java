@@ -115,6 +115,25 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
             dbRef = FirebaseDatabase.getInstance().getReference().child("Student");
+
+            dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.hasChild("IT18023824")) {
+                    dbRef = dbRef.child("IT18023824");
+                    dbRef.removeValue();
+                    Toast.makeText(getApplicationContext(),"User Removed",Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(),"No User to Remove",Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
             }
         });
 
