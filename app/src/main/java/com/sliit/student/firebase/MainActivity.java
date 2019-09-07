@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
                 student.setContactnum(Integer.parseInt(txt_contact.getText().toString().trim()));
 
                 dbRef.push().setValue(student);
+                dbRef.child("IT18023824").setValue(student);
+
+
                 Toast.makeText(getApplicationContext(), "Adding Success",Toast.LENGTH_LONG).show();
                 clearData();
             }
